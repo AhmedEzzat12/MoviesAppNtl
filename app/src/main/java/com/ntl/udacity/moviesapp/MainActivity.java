@@ -27,7 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private static final String API_KEY = "0ad818053218184a4f89716fa901d427";
+    //Api key is here
+    private static final String API_KEY = "";
     private List<Movie> movies = new ArrayList<>();
     private CustomAdapter customAdapter;
 
