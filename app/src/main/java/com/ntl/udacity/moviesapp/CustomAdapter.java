@@ -1,42 +1,55 @@
 package com.ntl.udacity.moviesapp;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.ntl.udacity.moviesapp.dataModels.Movie;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 
-class CustomAdapter extends BaseAdapter {
+class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MovieViewHolder>
+{
 
-
-    private Context context;
+    private static final String TAG = CustomAdapter.class.getSimpleName();
+    final private ListItemClickListener mOnClickListener;
     private List<Movie> movies;
+    private Context context;
+    private boolean offline;
 
-    public CustomAdapter(Context c, List<Movie> m) {
-        this.movies = m;
-        this.context = c;
+    public CustomAdapter(ListItemClickListener mOnClickListener)
+    {
+        this.mOnClickListener = mOnClickListener;
     }
 
-    public void setMovies(List<Movie> m) {
+    public void setMovies(List<Movie> m, boolean offline)
+    {
         this.movies = m;
+        this.offline = offline;
         notifyDataSetChanged();
     }
 
     @Override
-    public int getCount() {
-        return movies.size();
+    public MovieViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    {
+        context = parent.getContext();
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view = inflater.inflate(R.layout.grid_item, null);
+
+        return new MovieViewHolder(view);
     }
 
     @Override
-    public Object getItem(int i) {
-        return movies.get(i);
+    public void onBindViewHolder(MovieViewHolder holder, int position)
+    {
+        holder.bind(position);
     }
 
     @Override
@@ -45,22 +58,50 @@ class CustomAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        LayoutInflater inflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        View grid;
-
-        if (view == null) {
-            grid = inflater.inflate(R.layout.grid_item, null);
-        } else {
-            grid = view;
-        }
-
-        ImageView imageView = grid.findViewById(R.id.imageItem);
-        Picasso.with(context).load(movies.get(i).getPicUrl()).placeholder(R.drawable.holder).fit().into(imageView);
-        Log.d("adapter", movies.get(i).getTitle() + " " + movies.get(i).getPicUrl());
-        return grid;
+    public int getItemCount()
+    {
+        if (movies != null)
+            return movies.size();
+        return 0;
     }
 
+    public interface ListItemClickListener
+    {
+        void onListItemClick(int clickedItemIndex);
+    }
+
+    public class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+    {
+        ImageView imageView;
+
+        public MovieViewHolder(View itemView)
+        {
+            super(itemView);
+            imageView = itemView.findViewById(R.id.imageItem);
+            itemView.setOnClickListener(this);
+
+        }
+
+        void bind(int listIndex)
+        {
+            if (offline)
+            {
+                Bitmap bitmap = Utility.getImage(movies.get(listIndex).getImage());
+                imageView.setImageBitmap(bitmap);
+            } else
+            {
+                String imageUrl = movies.get(listIndex).buildPicUrl();
+                Picasso.with(context).load(imageUrl).placeholder(R.drawable.holder).fit().into(imageView);
+                Log.d(TAG, movies.get(listIndex).getTitle() + " " + imageUrl);
+
+            }
+        }
+
+        @Override
+        public void onClick(View v)
+        {
+            mOnClickListener.onListItemClick(getAdapterPosition());
+
+        }
+    }
 }

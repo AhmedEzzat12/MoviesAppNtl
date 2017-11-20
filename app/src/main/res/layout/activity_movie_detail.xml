@@ -27,7 +27,6 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp" />
 
-
         <TextView
             android:id="@+id/rate"
             android:layout_width="wrap_content"
@@ -52,6 +51,25 @@
 
             />
 
+        <Button
+            android:id="@+id/favourite"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/date"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/movie_pic"
+            android:background="@android:drawable/btn_star_big_on"
+            android:onClick="addToFavourite" />
+
+        <Button
+            android:id="@+id/unfavourite"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/favourite"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/movie_pic"
+            android:background="@android:drawable/btn_star_big_off"
+            android:onClick="removeFromFavourite" />
         <TextView
             android:id="@+id/plot"
             android:layout_width="wrap_content"
@@ -60,6 +78,61 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
             tools:text="test1" />
+
+        <View
+            android:id="@+id/divier1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/plot"
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/trailers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divier1"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/trailers"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:id="@+id/trailersList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/trailers"
+            android:orientation="vertical" />
+
+        <View
+            android:id="@+id/divier2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/trailersList"
+            android:layout_marginEnd="40dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/colorPrimaryDark" />
+
+        <TextView
+            android:id="@+id/reviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divier2"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Reviews :"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:id="@+id/reviews_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/reviews"
+            android:orientation="vertical" />
+
     </RelativeLayout>
 
 </ScrollView>

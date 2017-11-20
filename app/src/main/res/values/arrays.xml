@@ -3,6 +3,7 @@
     <string-array name="sort_types_readable">
         <item>@string/popular_readable</item>
         <item>@string/top_rated_readable</item>
+        <item>@string/favourites_readable</item>
     </string-array>
 
 
@@ -10,6 +11,8 @@
 
         <item>@string/popular</item>
         <item>@string/toprated</item>
+        <item>@string/favourites</item>
+
     </string-array>
 
 </resources>

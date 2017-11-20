@@ -2,7 +2,6 @@
     <string name="app_name">Movies App</string>
     <string name="settings">Settings</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="popular">popular</string>
 
     <string name="popular_readable">Popular</string>
@@ -11,13 +10,8 @@
     <string name="key_pref_movie_type">key_pref_movie_type</string>
     <string name="sort_by">Sort By</string>
     <string name="title_activity_settings">Settings</string>
-
-    <!-- Strings related to Settings -->
-
-    <!-- Example General settings -->
-
-    <!-- Example settings for Data & Sync -->
-
-    <!-- Example settings for Notifications -->
+    <string name="trailers">Trailers:</string>
+    <string name="favourites">favourites</string>
+    <string name="favourites_readable">Favourites</string>
 
 </resources>
