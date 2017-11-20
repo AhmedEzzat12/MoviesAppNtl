@@ -132,7 +132,6 @@ public class MainActivity extends AppCompatActivity implements
         savedInstanceState.putString("setting", sortby);
         savedInstanceState.putParcelableArrayList(MOVIES_KEY, (ArrayList<? extends Parcelable>) movies);
 
-        // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
     }
 
@@ -184,7 +183,6 @@ public class MainActivity extends AppCompatActivity implements
     protected void onDestroy()
     {
         super.onDestroy();
-        // Unregister VisualizerActivity as an OnPreferenceChangedListener to avoid any memory leaks.
         PreferenceManager.getDefaultSharedPreferences(this)
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
