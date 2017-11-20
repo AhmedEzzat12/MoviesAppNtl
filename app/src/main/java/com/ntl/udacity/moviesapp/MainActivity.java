@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements
 {
 
     //Api key is here
-    public static final String API_KEY = "0ad818053218184a4f89716fa901d427";
+    public static final String API_KEY = "";
     public static final String MOVIES_KEY = "movies";
     private static final String TAG = MainActivity.class.getSimpleName();
     private static final int MOVIE_LOADER_ID = 0;
